@@ -16,7 +16,7 @@ BASE_PATH = Path(__file__).resolve().parent
 TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "templates"))
 
 
-app_fast = FastAPI(title="Recipe API", openapi_url="/openapi.json")
+app = FastAPI(title="Recipe API", openapi_url="/openapi.json")
 
 api_router = APIRouter()
 
@@ -89,11 +89,11 @@ def create_recipe(
     return recipe
 
 
-app_fast.include_router(api_router)
+app.include_router(api_router)
 
 
 if __name__ == "__main__":
     # Use this for debugging purposes only
     import uvicorn
 
-    uvicorn.run(app_fast, host="0.0.0.0", port=8001, log_level="debug")
+    uvicorn.run(app, host="0.0.0.0", port=8001, log_level="debug")
